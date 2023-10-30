@@ -63,7 +63,7 @@ const Navbar = () => {
           alignItems: "center",
           justifyContent: "flex-start",
           gap: "40px",
-          marginLeft:"50px"
+          paddingLeft:"50px"
         }}
       >
         <Link style={{textDecoration:"none",color:"black"}} to="/">
