@@ -7,7 +7,8 @@ import Typography from '@mui/material/Typography';
 
 
 export default function BasicRating() {
-    const [value, setValue] = React.useState(5);
+    const [value] = React.useState(5);
+   
     
   
     return (
