@@ -23,8 +23,9 @@ const Products = ({cartitems}) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-around",
+          justifyContent: "space-evenly",
           marginBottom: "3cm",
+          gap:".5cm",
           flexWrap: "wrap",
         }}
       >
@@ -38,7 +39,7 @@ const Products = ({cartitems}) => {
             </div>
 
             <div>
-              <Typography fontSize={14} marginY={2.5}>
+              <Typography fontSize={16} marginY={2.5}>
                 {cartitem.name}
               </Typography>
             </div>

@@ -62,6 +62,19 @@ const data = {
       price: 98,
       Image: "./images/a1.webp",
     },
+    {
+      id: 9,
+      name: "AF Premium Silver Car Body Cover For Nissan Sunny",
+      price: 98,
+      Image: "./images/e1.webp",
+      new: "./images/new.png",
+    },
+    {
+      id: 10,
+      name: "AF Premium Silver Car Body Cover For Nissan Sunny",
+      price: 98,
+      Image: "./images/b1.webp",
+    },
   ],
 };
 

@@ -29,7 +29,7 @@ const Navbar = () => {
           <p>Register</p>
 
           <Link style={{textDecoration:"none",color:"white"}} to="/Wishlist">
-            <p style={{marginRight:"14px"}}>
+            <p style={{marginRight:"12px"}}>
               {" "}
               <Badge
                 badgeContent={wishlist.length === 0 ? "0" : wishlist.length}
@@ -41,12 +41,12 @@ const Navbar = () => {
           </Link>
 
           <p>
-            <Badge
+            <Badge sx={{marginTop:"8px"}}
               badgeContent={cartitem.length === 0 ? "0" : cartitem.length}
               color="error"
             >
               {" "}
-              <IconButton>
+              <IconButton sx={{marginTop:"-6px"}}>
                 {" "}
                 <SwipeableTemporaryDrawer />
               </IconButton>
