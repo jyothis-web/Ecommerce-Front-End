@@ -1,0 +1,25 @@
+
+.nav {
+  height: 70px;
+  width: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav2 {
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: white;
+}
+.nav .right-nav {
+  display: flex;
+  width: 6cm;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.nav .right-nav p {
+  cursor: pointer;
+ 
+}
