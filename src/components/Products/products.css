@@ -31,7 +31,6 @@ button {
   position: relative;
   width: 200px;
   object-fit: contain;
-  transition:  .5s ease-in-out linear;
   cursor: pointer;
 }
 
