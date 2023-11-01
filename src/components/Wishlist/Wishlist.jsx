@@ -14,7 +14,7 @@ const Cartbtn = styled(Button)({
   "&:hover": { color: "white", backgroundColor: "red" },
 });
 const Wishlist = () => {
-  const { wishlist,cartitem, handleaddproduct, WishlistProductRemove } =
+  const { wishlist,handleaddproduct, WishlistProductRemove,isProductInCart } =
     useContext(cart);
 
   return (
@@ -46,7 +46,7 @@ const Wishlist = () => {
               <img src={product.new} alt="" className="new" width={"50px"} />
               <img src={product.sale} alt="" className="sale" width={"50px"} />
               <div className="cartimage">
-                <img className="img1" src={product.Image} alt="" />
+                <img className="img1" src={product.Image} alt=""style={{ width: "100%" }} />
                 {/* <img className="img2" src={cartitem.Image} alt="" /> */}
               </div>
 
@@ -63,13 +63,14 @@ const Wishlist = () => {
                 </Typography>
               </div>
               <div style={{ paddingLeft: "5px" }}>
-                <Cartbtn
-                  onClick={() => {
-                    handleaddproduct(cartitem);
-                  }}
-                >
-                  Add To Cart
-                </Cartbtn>{" "}
+              {isProductInCart(product.id) ? (
+                <Cartbtn>Added to Cart</Cartbtn>
+              ) : (
+                <Cartbtn onClick={() => handleaddproduct(product)}>
+                  Add to Cart
+                </Cartbtn>
+              )}
+               
                 <SyncIcon
                   sx={{
                     marginBottom: "-5px",

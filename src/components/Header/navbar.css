@@ -13,6 +13,9 @@
   margin-bottom: 10px;
   background-color: white;
 }
+.nav2 :hover {
+color:blue;
+}
 .nav .right-nav {
   display: flex;
   width: 6cm;

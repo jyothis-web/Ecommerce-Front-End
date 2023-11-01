@@ -40,13 +40,13 @@ const Navbar = () => {
             </p>
           </Link>
 
-          <p>
-            <Badge sx={{marginTop:"8px"}}
+          <p >
+            <Badge style={{marginRight:"15px",marginTop:"8px"}}
               badgeContent={cartitem.length === 0 ? "0" : cartitem.length}
               color="error"
             >
               {" "}
-              <IconButton sx={{marginTop:"-6px"}}>
+              <IconButton sx={{marginTop:"-8px",marginLeft:"-5px"}}>
                 {" "}
                 <SwipeableTemporaryDrawer />
               </IconButton>
@@ -66,7 +66,7 @@ const Navbar = () => {
           paddingLeft:"50px"
         }}
       >
-        <Link style={{textDecoration:"none",color:"black"}} to="/">
+        <Link to="/" style={{textDecoration:"none",color:"black",}}>
           <p >Home</p>
         </Link>
         <p>bestsellers</p>
