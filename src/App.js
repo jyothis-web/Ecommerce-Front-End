@@ -10,6 +10,7 @@ import Products from "./components/Products/Products";
 import data from "./components/Products/Data";
 import SwipeableTemporaryDrawer from "./components/Cart/Cartslide";
 import Wishlist from "./components/Wishlist/Wishlist";
+
 function App() {
    //const { productitems } = data;
    const {cartitems} = data;
@@ -30,6 +31,7 @@ function App() {
       <Route path="/Wishlist" element={ <Wishlist cartitems={cartitems}/>} />
       </Routes>
       <SwipeableTemporaryDrawer/>
+      
       
     </div>
   );

@@ -1,6 +1,7 @@
 button {
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 .card {
@@ -8,6 +9,21 @@ button {
   width: 220px;
   position: relative;
 }
+ /* .cartimage img:hover {
+  
+ 
+} */
+.img1  {
+  width: 100%;
+}
+.img2{
+  width: 100%;
+  transition:  .5s ease-in-out;
+}
+ /* .cartimage .img2 :active{
+  transform:translateX(50%);
+  
+} */
 
 .new {
   position: absolute;
@@ -30,15 +46,10 @@ button {
   position: relative;
   width: 200px;
   object-fit: contain;
-
+  transition:  .5s ease-in-out linear;
   cursor: pointer;
 }
-.img1 {
-  width: 100%;
-}
-.img2 {
-  width: 100%;
-}
+
 
 
 /* wishlist */

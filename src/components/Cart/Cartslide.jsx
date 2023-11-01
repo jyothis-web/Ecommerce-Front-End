@@ -168,7 +168,7 @@ export default function SwipeableTemporaryDrawer() {
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
           <IconButton
-          style={{fontSize: ".1px", padding: "0", width: ".1px" }}
+          style={{fontSize: "2px", padding: "0", width: "3px" }}
             onClick={toggleDrawer(anchor, true)}
           >
             {" "}

@@ -23,10 +23,10 @@ const Contex = ({ children }) => {
     const productIndex =wishlist.findIndex((item) => item.id === Product.id);
     if (productIndex !== -1) {
       const UpdatedWishlist = [...wishlist];
-      UpdatedWishlist[productIndex].quantity += 1;
+      UpdatedWishlist.splice(productIndex,1)
       setWishlist(UpdatedWishlist);
     } else {
-      setWishlist([...wishlist, { ...Product, quantity: 1 }]);
+      setWishlist([...wishlist,Product]);
     }
   };
 
@@ -51,12 +51,25 @@ const Contex = ({ children }) => {
     const RemoveProduct = cartitem.filter((item) => item.id !== product.id);
     setCartitem(RemoveProduct);
   };
+
   //remove single product from cart
   const WishlistProductRemove = (product) => {
     const  WishlistRemoveProduct = wishlist.filter((item) => item.id !== product.id);
     setWishlist( WishlistRemoveProduct);
   };
+//to change the cart button when its clicked
+  const isProductInCart = (productId) => {
+    return cartitem.some((item) => item.id === productId);
+  };
 
+  const isWishlist = (productId) => {
+    return wishlist.some((item) => item.id === productId);
+  };
+
+  const WishlistcartitemRemove = (productId) => {
+    const  WishlistRemovecartitem = wishlist.filter((item) => item.id !== productId);
+    setWishlist( WishlistRemovecartitem);
+  };
   return (
     <div>
       <cart.Provider
@@ -68,6 +81,9 @@ const Contex = ({ children }) => {
           handleremoveproduct,
           wishlistaddproduct,
           WishlistProductRemove,
+          isProductInCart,
+          isWishlist,
+          WishlistcartitemRemove
         }}
       >
         {children}
