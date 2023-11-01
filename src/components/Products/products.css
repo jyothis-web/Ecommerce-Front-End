@@ -9,21 +9,6 @@ button {
   width: 220px;
   position: relative;
 }
- /* .cartimage img:hover {
-  
- 
-} */
-.img1  {
-  width: 100%;
-}
-.img2{
-  width: 100%;
-  transition:  .5s ease-in-out;
-}
- /* .cartimage .img2 :active{
-  transform:translateX(50%);
-  
-} */
 
 .new {
   position: absolute;
