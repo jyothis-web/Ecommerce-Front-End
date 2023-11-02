@@ -1,4 +1,3 @@
-
 .nav {
   height: 70px;
   width: 100%;
@@ -8,13 +7,14 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .nav2 {
   width: 100%;
   margin-bottom: 10px;
   background-color: white;
 }
 .nav2 :hover {
-color:blue;
+  color: blue;
 }
 .nav .right-nav {
   display: flex;
@@ -24,5 +24,28 @@ color:blue;
 }
 .nav .right-nav p {
   cursor: pointer;
- 
+}
+@media (max-width: 992px) {
+  .hotline {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .input {
+    display: none;
+  }
+  .signin {
+    display: none;
+  }
+  .Register {
+    display: none;
+  }
+  .nav .right-nav{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .nav .right-nav p{
+    margin: 0 10px;
+  }
 }

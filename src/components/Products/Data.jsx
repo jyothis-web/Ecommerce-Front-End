@@ -97,6 +97,52 @@ const data = {
       rating: <BasicRating />,
       // cartbtn:<Cartbtn/>
     },
+    {
+      id: 11,
+      name: "AF Premium Silver Car Body Cover For Nissan Sunny",
+      price: 98,
+      Image: "./images/h1.webp",
+      image: "./images/h1.webp",
+      new: "./images/new.png",
+      // cartbtn:<Cartbtn/>
+    },
+    {
+      id: 12,
+      name: "AF Premium Silver Car Body Cover For Nissan Sunny",
+      price: 98,
+      Image: "./images/a1.webp",
+      image: "./images/a2.webp",
+      // cartbtn:<Cartbtn/>
+    },
+    {
+      id: 13,
+      name: "AF Premium Silver Car Body Cover For Nissan Sunny",
+      price: 98,
+      Image: "./images/e1.webp",
+      image: "./images/e1.webp",
+      new: "./images/new.png",
+      // cartbtn:<Cartbtn/>
+    },
+    {
+      id: 14,
+      name: "AF Premium Silver Car Body Cover For Nissan Sunny",
+      price: 98,
+      Image: "./images/b1.webp",
+      image: "./images/b2.webp",
+      new: "./images/new.png",
+      rating: <BasicRating />,
+      //  cartbtn:<Cartbtn/>
+
+    },
+    {
+      id: 15,
+      name: "AF Premium Silver Car Body Cover For Nissan Sunny",
+      price: 98,
+      Image: "./images/c1.webp",
+      image: "./images/c2.webp",
+      rating: <BasicRating />,
+      //  cartbtn:<Cartbtn/>
+    },
   ],
 };
 

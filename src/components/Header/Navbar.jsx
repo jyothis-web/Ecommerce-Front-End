@@ -12,25 +12,26 @@ const Navbar = () => {
   return (
     <div style={{ position: "fixed", top: "0", width: "100%", zIndex: "10" }}>
       <div className="nav">
-        <div style={{ marginLeft: "1cm", }}>
+        <div className="logo" style={{ marginLeft: "1cm", }}>
           {/* <h5>you first order is free</h5> */}
           <img src="./images/logo.webp" alt="" />
         </div>
-        <div>
+        <div className="input">
           <input
             style={{ width: "5.5cm", height: ".6cm", outline: "none" }}
             placeholder="search"
             type="text"
           ></input>
-        </div>
-        <div>HOTLINE: 1-900-9999</div>
+        </div >
+        <div className="hotline">HOTLINE: 1-900-9999</div>
         <div className="right-nav">
-          <p>sign in</p>
-          <p>Register</p>
+          <p className="signin">sign in</p>
+          <p className="Register">Register</p>
 
           <Link style={{textDecoration:"none",color:"white"}} to="/Wishlist">
-            <p style={{marginRight:"12px"}}>
+            <p     style={{marginRight:"12px"}}> 
               {" "}
+              {/* display:{wishlist.length === 0 ? "none" : "block"} */}
               <Badge
                 badgeContent={wishlist.length === 0 ? "0" : wishlist.length}
                 color="error"
