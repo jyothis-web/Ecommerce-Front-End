@@ -1,38 +1,64 @@
 import React from "react";
-//import Addcart from "./cart/Addcart";
-//import data from "./cart/Data";
-//import Header from "./cart/Header/Header";
-//import Products from "./cart/Products";
-//import Cart from "./cart/signup/Cart";
+import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Header/Navbar";
-import Products from "./components/Products/Products";
-import data from "./components/Products/Data";
-import SwipeableTemporaryDrawer from "./components/Cart/Cartslide";
+import UserRegister from "./components/UserAuthentication/UserRegister/UserRegister";
+import UserLogin from "./components/UserAuthentication/UserLogin/UserLogin";
+import UserHomePage from "./components/pages/UserHomePage";
+import HomePage from "./components/pages/HomePage";
 import Wishlist from "./components/Wishlist/Wishlist";
+import UserDashboard from "./components/pages/userDashboard/UserDashboard";
+import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
+import AdminDashboard from "./components/pages/AdminDashboard/AdminDashborad";
+import Catergory from "./components/pages/AdminDashboard/categorySection/Catergory";
+import { Toaster } from "react-hot-toast";
+import Product from "./components/pages/AdminDashboard/ProductSection/Product";
+import CreateProduct from "./components/pages/AdminDashboard/ProductSection/CreateProduct";
+import UpdateProduct from "./components/pages/AdminDashboard/ProductSection/UpdateProduct";
+import CategoryWithProducts from "./components/pages/AdminDashboard/categorySection/CategoryWithProducts";
+import Search from "./components/Products/filterProducts/Search";
+import SearchPage from "./components/pages/SearchpPage";
+import ProductDescription from "./components/pages/ProductDescription";
+import Navbar from "./components/Header/Navbar";
 
 function App() {
-   //const { productitems } = data;
-   const {cartitems} = data;
-
   return (
     <div className="App">
-      {/* <Header />
+      <Toaster
+        containerStyle={{
+          position: "absolute",
+          top: "0px",
+          left: "-60px",
+        }}
+      />
+<Navbar/>
       <Routes>
-        <Route path="/" element={<Products productitems={productitems} />} />
-        <Route path="/Signup" element={<Cart />} />
-        <Route path="/Addcart" element={<Addcart />} />
-      </Routes> */}
-
-      <Navbar/>
-      <Routes>
-      <Route path="/" element={<Products cartitems={cartitems}/>} />
-      
-      <Route path="/Wishlist" element={ <Wishlist cartitems={cartitems}/>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/Search" element={<Search />} />
+        <Route path="/SearchPage" element={<SearchPage />} />
+        <Route path="/UserHomepage" element={<UserHomePage />} />
+        <Route path="/UserRegister" element={<UserRegister />} />
+        <Route path="/UserLogin" element={<UserLogin />} />
+        <Route path="/AdminLogin" element={<AdminLogin />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/Wishlist" element={<Wishlist />} />
+        <Route path="/UserDashboard" element={<UserDashboard />} />
+        <Route path="/Catergory" element={<Catergory />} />
+        <Route path="/Product" element={<Product />} />
+        <Route
+          path={`/ProductDescription/:id`}
+          element={<ProductDescription />}
+        />
+        <Route path="/CreateProduct" element={<CreateProduct />} />
+        <Route
+          path="/CategoryWithProducts"
+          element={<CategoryWithProducts />}
+        />
+        <Route
+          path={`/UpdateProduct/:productId/:productName`}
+          element={<UpdateProduct />}
+        />
       </Routes>
-      <SwipeableTemporaryDrawer/>
-      
-      
+      {/* <SwipeableTemporaryDrawer/> */}
     </div>
   );
 }

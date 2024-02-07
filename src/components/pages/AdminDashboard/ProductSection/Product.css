@@ -1,3 +1,7 @@
+.formcss{
+    display: flex;
+    gap: "30px";
+}
 button {
   border: none;
   background: none;
@@ -36,12 +40,8 @@ button {
 
 
 
-/* wishlist */
-
-.filter-css{
- display: flex;
- align-items: baseline;
- width: 160px;
- margin-top: 10px;
-
+/* create product */
+.create-product input{
+  padding: 10px;
+  
 }

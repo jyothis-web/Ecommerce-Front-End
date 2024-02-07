@@ -18,8 +18,9 @@
 }
 .nav .right-nav {
   display: flex;
-  width: 6cm;
+  width: 7cm;
   align-items: center;
+  gap: 10px;
   justify-content: space-evenly;
 }
 .nav .right-nav p {
@@ -41,11 +42,11 @@
   .Register {
     display: none;
   }
-  .nav .right-nav{
+  .nav .right-nav {
     display: flex;
     justify-content: flex-end;
   }
-  .nav .right-nav p{
+  .nav .right-nav p {
     margin: 0 10px;
   }
 }

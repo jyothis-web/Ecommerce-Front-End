@@ -1,20 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./navbar.css";
 import IconButton from "@mui/material/IconButton";
-import { Badge } from "@mui/material";
+import { Avatar, Badge } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
 import SwipeableTemporaryDrawer from "../Cart/Cartslide";
 import { cart } from "../Contex";
-import { Button } from "antd";
-import axios from "axios";
-import Search from "../Products/filterProducts/Search";
 
-const Navbar = ({ handleSearch }) => {
+const UserNavbar = () => {
   const { cartitem, wishlist } = useContext(cart);
-
-
-
   return (
     <div style={{ position: "fixed", top: "0", width: "100%", zIndex: "10" }}>
       <div className="nav">
@@ -22,20 +16,16 @@ const Navbar = ({ handleSearch }) => {
           {/* <h5>you first order is free</h5> */}
           <img src="./images/logo.webp" alt="" />
         </div>
-       <Search/>
-       
+        <div className="input">
+          <input
+            style={{ width: "5.5cm", height: ".6cm", outline: "none" }}
+            placeholder="search"
+            type="text"
+          ></input>
+        </div>
+        <div className="hotline">HOTLINE: 1-900-9999</div>
         <div className="right-nav">
-          <Link to="/UserLogin">
-            {" "}
-            <button id="normalbtn" className="signin">
-              Login
-            </button>
-          </Link>
-          <Link to="/UserRegister">
-            <button id="normalbtn" className="Register">
-              Register
-            </button>
-          </Link>
+         <Link to="/UserDashboard"> <Avatar /></Link>
 
           <Link
             style={{ textDecoration: "none", color: "white" }}
@@ -90,4 +80,4 @@ const Navbar = ({ handleSearch }) => {
   );
 };
 
-export default Navbar;
+export default UserNavbar;

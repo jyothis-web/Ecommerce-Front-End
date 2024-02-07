@@ -9,7 +9,6 @@ const data = {
       id: 1,
       name: "AF Premium Silver Car Body Cover For Nissan Sunny",
       price: 88,
-      pric: 88,
       Image: "./images/a1.webp",
       image: "./images/a2.webp",
     
