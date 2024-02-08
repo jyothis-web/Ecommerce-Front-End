@@ -1,3 +1,25 @@
+# eCommerce Front End with React, Material-UI, and Context API
+
+## Overview
+
+This project is an eCommerce Front End built using React, Material-UI (MUI), and the Context API. It provides a responsive and user-friendly interface for an online store.
+
+## Features
+
+- **React Components:** Utilizes modular React components for a maintainable and scalable codebase.
+- **Material-UI Design:** Incorporates Material-UI components and styling for a modern and intuitive user interface.
+- **State Management:** Implements the React Context API for efficient state management across components.
+- **Responsive Design:** Ensures a seamless user experience on various devices through responsive design principles.
+- **Product Catalog:** Displays a dynamic product catalog with details such as name, price, and images.
+- **Shopping Cart:** Allows users to add products to a shopping cart, view the cart contents, and proceed to checkout.
+- **Theme Customization:** Leverages Material-UI theming for easy customization and branding.
+
+## Technologies Used
+
+- **React:** A JavaScript library for building user interfaces.
+- **Material-UI (MUI):** A React UI framework implementing Google's Material Design principles.
+- **Context API:** A React feature for managing state in a scalable and efficient way.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
