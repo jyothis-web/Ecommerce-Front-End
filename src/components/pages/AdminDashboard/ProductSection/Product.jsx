@@ -31,7 +31,7 @@ const Product = () => {
   const getProducts = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/admin/product/get-product"
+        `${process.env.REACT_APP_BASE_URL}/admin/product/get-product`
       );
       setProducts(response.data.products);
     } catch (error) {
@@ -43,7 +43,7 @@ const Product = () => {
     console.log(productID);
     try {
       const response = await axios.delete(
-        `http://localhost:8080/admin/product/delete-product/${productID}`
+        `${process.env.REACT_APP_BASE_URL}/admin/product/delete-product/${productID}`
         // {
         //   headers: {
         //     Authorization: `${token}`,
@@ -117,7 +117,7 @@ const Product = () => {
                   <TableCell>
                     {product.image && (
                       <img
-                        src={`http://localhost:8080/${product.image.imagePath}`}
+                        src={`${process.env.REACT_APP_BASE_URL}/${product.image.imagePath}`}
                         alt={product.name}
                         style={{ width: "70px" }}
                       />
@@ -189,7 +189,7 @@ export default Product;
 //               <div className="cartimage">
 //                 {product.image && (
 //                   <img
-//                     src={`http://localhost:8080/${product.image.imagePath}`}
+//                     src={`${process.env.REACT_APP_BASE_URL}/${product.image.imagePath}`}
 //                     alt={product.name}
 //                     style={{ width: "200px" }}
 //                   />

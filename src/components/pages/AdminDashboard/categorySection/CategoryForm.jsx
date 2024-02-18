@@ -8,7 +8,7 @@ const CategoryForm = ({handleSubmit,value,setValue}) => {
 //     e.preventDefault();
 //     try {
 //       const response = await axios.put(
-//         `http://localhost:8080/admin/update-category/:id`,
+//         `${process.env.REACT_APP_BASE_URL}/admin/update-category/:id`,
 //         { name }
 //         // Add headers or other configurations if needed
 //       );

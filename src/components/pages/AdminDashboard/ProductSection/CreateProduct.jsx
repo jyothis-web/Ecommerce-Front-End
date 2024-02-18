@@ -13,7 +13,7 @@ const CreateProduct = () => {
    const [rating, setRating] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const [name, setName] = useState("");
-  const [description , setDescription ] = useState("");
+  const [description, setDescription ] = useState("");
   const [price, setPrice] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [catagory, setCatogary] = useState("");
@@ -60,7 +60,7 @@ const CreateProduct = () => {
 
   useEffect(() => {
     getCategories();
-  }, []);
+  },);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,7 +69,7 @@ const CreateProduct = () => {
     const formData = new FormData();
     formData.append("file", image);
     formData.append("name", name);
-    formData.append("description ", description );
+    formData.append("description",description);
     formData.append("price", price);
     formData.append("rating", rating);
     formData.append("newtag", newtag);
@@ -78,7 +78,7 @@ const CreateProduct = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/admin/product/create-product",
+        `${process.env.REACT_APP_BASE_URL}/admin/product/create-product`,
         formData,
         {
           headers: {
@@ -168,13 +168,13 @@ const CreateProduct = () => {
         <br />
         <label style={{ marginBottom: "25px" }}>
           Description:
-          <input
+          <textarea
           placeholder=" product Description"
             type="text"
             value={description}
             onChange={(e)=> setDescription (e.target.value)}
             required
-            style={{ width: "100%",marginBottom: "25px" }}
+            style={{ width: "100%",height:"100px",marginBottom: "25px" }}
           />
         </label>
         <br />

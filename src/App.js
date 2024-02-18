@@ -30,7 +30,7 @@ function App() {
           left: "-60px",
         }}
       />
-<Navbar/>
+      {/* <Navbar/> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Search" element={<Search />} />

@@ -17,7 +17,7 @@ const CategoryWithProducts = () => {
       const token = auth.token;
 
       const response = await axios.get(
-        "http://localhost:8080/admin/get-category",
+        `${process.env.REACT_APP_BASE_URL}/admin/get-category`,
         {
           headers: {
             Authorization: `${token}`,

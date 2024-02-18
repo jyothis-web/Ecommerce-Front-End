@@ -17,24 +17,25 @@ const Products = ({ ps }) => {
   const {
     handleaddproduct,
     wishlistaddproduct,
-    isProductInCart,
-    isWishlist,
-    WishlistcartitemRemove,
+    //WishlistcartitemRemove,
     getProducts,
     products,
     getCategories,
     categories,
     setProducts,
+    cartitem,
+    wishlist,
+    auth,
   } = useContext(cart);
-  const [hoveredProduct, setHoveredProduct] = useState(null);
+  console.log("auth", auth);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
-
+  //for grting acategories
   useEffect(() => {
     getCategories();
     // eslint-disable-next-line
   }, []);
-
+  //for filter
   useEffect(() => {
     if (checked.length || radio.length) {
       filterProduct();
@@ -43,7 +44,7 @@ const Products = ({ ps }) => {
     }
     // eslint-disable-next-line
   }, [checked, radio]);
-
+  //cartbuton
   const Cartbtn = styled(Button)({
     width: "90px",
     fontSize: "10px",
@@ -67,7 +68,7 @@ const Products = ({ ps }) => {
   const filterProduct = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:8080/admin/product/filter-product`,
+        `${process.env.REACT_APP_BASE_URL}/admin/product/filter-product`,
         { checked, radio }
         // {
         //   headers: {
@@ -86,6 +87,14 @@ const Products = ({ ps }) => {
         console.error("Error Response:", error.response.data);
       }
     }
+  };
+
+  const isProductInCart = (productId) => {
+    return cartitem.some((product) => product._id === productId);
+  };
+
+  const isWishlist = (productId) => {
+    return wishlist.some((product) => product._id === productId);
   };
 
   return (
@@ -144,7 +153,7 @@ const Products = ({ ps }) => {
         }}
       >
         {products.map((product) => (
-          <div className="card">
+          <div className="card" key={product._id}>
             <div>
               {product.newimg > 0 && (
                 <img src={img} alt="" style={{ width: "50px" }} />
@@ -153,48 +162,29 @@ const Products = ({ ps }) => {
 
             <div
               className="cartimage"
-              onMouseEnter={() => setHoveredProduct(product)}
-              onMouseLeave={() => setHoveredProduct(null)}
+              // onMouseEnter={() => setHoveredProduct(product)}
+              // onMouseLeave={() => setHoveredProduct(null)}
             >
-              {hoveredProduct === product ? (
-                <div>
-                  {" "}
-                  <Link to={`/ProductDescription/${product._id}`}>
+              <div>
+                <Link to={`/ProductDescription/${product._id}`}>
                   {product.image && (
                     <img
-                      src={`http://localhost:8080/${product.image.imagePath}`}
+                      src={`${process.env.REACT_APP_BASE_URL}/${product.image.imagePath}`}
                       alt={product.name}
                       style={{
-                        width: "200px",
-                        height: "200px",
+                        width: "100%",
+                        height: "290px",
                         objectFit: "cover",
                       }}
                     />
                   )}
-                  </Link>
-                </div>
-              ) : (
-                <div>
-                   <Link to={`/ProductDescription/${product._id}`}>
-                  {product.image && (
-                    <img
-                      src={`http://localhost:8080/${product.image.imagePath}`}
-                      alt={product.name}
-                      style={{
-                        width: "200px",
-                        height: "200px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  )}
-                  </Link>
-                </div>
-              )}
+                </Link>
+              </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <Link to="/ProductDescription">
+              <Link className="linkfont" to="/ProductDescription">
                 <div>
-                  <Typography sx={{ marginTop: "10px", marginBottom: "10px" }}>
+                  <Typography sx={{ height: "55px", width: "210px" }}>
                     {product.name}
                   </Typography>
                 </div>
@@ -209,7 +199,7 @@ const Products = ({ ps }) => {
                 />
               )}
               <div>
-                <Typography variant="h6" marginBottom={2} marginTop={4}>
+                <Typography variant="h6" marginBottom={2} marginTop={2}>
                   {" "}
                   ${product.price}/-
                 </Typography>
@@ -225,41 +215,51 @@ const Products = ({ ps }) => {
                 cursor: "pointer",
               }}
             >
-              {isProductInCart(product.id) ? (
-                <Cartbtn>Added to Cart</Cartbtn>
+              {/* {isProductInCart(product._id) ? (
+                <Cartbtn style={{ color: "white", backgroundColor: "red" }}>
+                  Added to Cart
+                </Cartbtn>
               ) : (
                 <Cartbtn onClick={() => handleaddproduct(product)}>
                   Add to Cart
                 </Cartbtn>
+              )} */}
+              {auth.user ? (
+                isProductInCart(product._id) ? (
+                  <Cartbtn style={{ color: "white", backgroundColor: "red" }}>
+                    Added to Cart
+                  </Cartbtn>
+                ) : (
+                  <Cartbtn onClick={() => handleaddproduct(product)}>
+                    Add to Cart
+                  </Cartbtn>
+                )
+              ) : (
+                <Cartbtn onClick={() => alert("Please login")}>
+                  Add to Cart
+                </Cartbtn>
               )}
-              {/* <Cartbtn
-                onClick={() => {
-                  handleaddproduct(p);
-                }}
-              >
-           add to cart
-              </Cartbtn>{" "} */}
+
               <div>
                 <IconButton
                   onClick={() => {
-                    wishlistaddproduct(product);
+                    auth.user
+                      ? wishlistaddproduct(product)
+                      : alert("Please login to add to wishlist");
                   }}
                 >
-                  {isWishlist(product.id) ? (
-                    <button>
+                  {auth.user ? (
+                    isWishlist(product._id) ? (
                       <Favorite style={{ color: "red", fontSize: "18px" }} />
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => {
-                        WishlistcartitemRemove(product);
-                      }}
-                    >
-                      {" "}
+                    ) : (
                       <FavoriteBorder
                         style={{ color: "black", fontSize: "19px" }}
                       />
-                    </button>
+                    )
+                  ) : (
+                    <FavoriteBorder
+                      style={{ color: "black", fontSize: "19px" }}
+                    />
                   )}
                 </IconButton>
                 {/* <FavoriteBorderIcon 

@@ -1,8 +1,9 @@
-import { Button } from "antd";
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { cart } from "../../Contex";
+import SearchIcon from '@mui/icons-material/Search';
+import { IconButton } from "@mui/material";
 
 const Search = () => {
   const { search, setSearch } = useContext(cart);
@@ -12,7 +13,7 @@ const Search = () => {
     e.preventDefault();
     try {
         const response = await axios.get(
-          `http://localhost:8080/admin/product/search/${search.keyword}`
+          `${process.env.REACT_APP_BASE_URL}/admin/product/search/${search.keyword}`
         );
     
         if (response.data.success) {
@@ -32,7 +33,7 @@ const Search = () => {
       <form onSubmit={handleSubmit} style={{ display: "flex" }}>
         <div className="input">
           <input
-            style={{ width: "5.5cm", height: ".6cm", outline: "none" }}
+           
             placeholder="search products"
             type="text"
             value={search.keyword}
@@ -40,9 +41,9 @@ const Search = () => {
           ></input>
         </div>
         <div>
-          <button style={{ background: "white" }} type="submit">
-            Search
-          </button>
+          <IconButton style={{ background: "white",height:"30px",width:"30px",marginLeft:"-30px" }} type="submit">
+            <SearchIcon/>
+          </IconButton>
         </div>
       </form>
     </div>

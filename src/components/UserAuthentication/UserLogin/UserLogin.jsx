@@ -16,7 +16,7 @@ const UserLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/auth/login", {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/login`, {
         email,
         password,
       });
@@ -29,7 +29,7 @@ const UserLogin = () => {
       });
       localStorage.setItem("auth", JSON.stringify(response.data));
       navigate("/UserHomepage");
-      // Assuming `navigate` is defined somewhere, navigate to "/UserLogin"
+      //  window.location.reload();
     } catch (error) {
       console.log(error.response.data.message);
       console.error(error);

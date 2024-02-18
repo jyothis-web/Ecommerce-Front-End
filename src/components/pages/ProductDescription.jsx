@@ -1,3 +1,4 @@
+import { Typography } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -10,7 +11,7 @@ const ProductDescription = () => {
     const getSingleProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/admin/product/get-singleproduct/${id}`
+          `${process.env.REACT_APP_BASE_URL}/admin/product/get-singleproduct/${id}`
         );
 
         const product = response.data.product;
@@ -29,17 +30,20 @@ const ProductDescription = () => {
       <h1>Product Details</h1>
       {productdata.image && (
                     <img
-                      src={`http://localhost:8080/${productdata.image.imagePath}`}
+                      src={`${process.env.REACT_APP_BASE_URL}/${productdata.image.imagePath}`}
                       alt={productdata.name}
                       style={{
-                        width: "200px",
-                        height: "200px",
+                        width: "300px",
                         objectFit: "cover",
                       }}
                     />
                   )}
       <p>{productdata.name}</p>
-      <p>{productdata.price}</p>
+      <p>{productdata.description}</p>
+      <Typography variant="h6" marginBottom={2} marginTop={4}>
+                  {" "}
+                  ${productdata.price}/-
+                </Typography>
 <h3>similar products</h3>
     </div>
   );

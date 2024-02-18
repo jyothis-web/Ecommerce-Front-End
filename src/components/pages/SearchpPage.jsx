@@ -1,84 +1,71 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import SyncIcon from "@mui/icons-material/Sync";
 import { cart } from "../Contex";
 import img from "../images/new.png";
-import { Favorite, FavoriteBorder } from '@mui/icons-material';
-import { Typography } from 'antd';
-import { Button, Rating } from '@mui/material';
-import styled from '@emotion/styled';
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { Typography } from "antd";
+import { Button, Rating } from "@mui/material";
+import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
+import UserNavbar from "../Header/UserNavbar";
 
 const SearchPage = () => {
-    const {
-        handleaddproduct,
-        wishlistaddproduct,
-        isProductInCart,
-        isWishlist,
-        WishlistcartitemRemove,
-    search
-      } = useContext(cart);
-      const [hoveredProduct, setHoveredProduct] = useState(null);
-      const Cartbtn = styled(Button)({
-        width: "90px",
-        fontSize: "10px",
-        padding: "2px",
-        color: "red",
-        border: "1px solid red",
-        "&:hover": { color: "white", backgroundColor: "red" },
-      });
-
+  const {
+    handleaddproduct,
+    wishlistaddproduct,
+    isProductInCart,
+    wishlist,
+    WishlistcartitemRemove,
+    search,
+  } = useContext(cart);
+  const Cartbtn = styled(Button)({
+    width: "90px",
+    fontSize: "10px",
+    padding: "2px",
+    color: "red",
+    border: "1px solid red",
+    "&:hover": { color: "white", backgroundColor: "red" },
+  });
+  const isWishlist = (productId) => {
+    return wishlist.some((product) => product._id === productId);
+  };
   return (
     <div>
+      <UserNavbar/>
       <h3>Search results</h3>
-      {search.result.map((product) => (
-          <div className="card">
-            {product.newimg > 0 && (
-              <img src={img} alt="" style={{ width: "50px" }} className="new" />
-            )}
-            <img src={product.sale} alt="" className="sale" width={"50px"} />
-
-            <div
-              className="cartimage"
-              onMouseEnter={() => setHoveredProduct(product)}
-              onMouseLeave={() => setHoveredProduct(null)}
-            >
-              {hoveredProduct === product ? (
-                <div>
-                  {" "}
+      <div style={{  display: "flex",
+          justifyContent: "space-evenly",
+          marginBottom: "3cm",
+          gap: ".5cm",
+          flexWrap: "wrap", }}>
+        {search.result.map((product) => (
+          <div className="card" key={product._id}>
+            <div>
+              <div>
+                <Link to={`/ProductDescription/${product._id}`}>
                   {product.image && (
                     <img
-                      src={`http://localhost:8080/${product.image.imagePath}`}
+                      src={`${process.env.REACT_APP_BASE_URL}/${product.image.imagePath}`}
                       alt={product.name}
                       style={{
-                        width: "200px",
-                        height: "200px",
+                        width: "100%",
+                        height: "290px",
                         objectFit: "cover",
                       }}
                     />
                   )}
-                </div>
-              ) : (
-                <div>
-                  {product.image && (
-                    <img
-                      src={`http://localhost:8080/${product.image.imagePath}`}
-                      alt={product.name}
-                      style={{
-                        width: "200px",
-                        height: "200px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  )}
-                </div>
-              )}
+                </Link>
+              </div>
             </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <div>
-                <Typography sx={{ marginTop: "10px", marginBottom: "10px" }}>
-                  {product.name}
-                </Typography>
-              </div>
+              <Link className="linkfont" to="/ProductDescription">
+                <div>
+                  <Typography sx={{ height: "55px", width: "210px" }}>
+                    {product.name}
+                  </Typography>
+                </div>
+              </Link>
               {product.rating > 0 && (
                 <Rating
                   sx={{ fontSize: "12px" }}
@@ -89,7 +76,7 @@ const SearchPage = () => {
                 />
               )}
               <div>
-                <Typography variant="h6" marginBottom={2} marginTop={4}>
+                <Typography variant="h6" marginBottom={2} marginTop={2}>
                   {" "}
                   ${product.price}/-
                 </Typography>
@@ -155,9 +142,14 @@ const SearchPage = () => {
             </div>
           </div>
         ))}
-      <h6>{search?.result.length < 1 ? "No products found" : `Found ${search?.result.length} products`}</h6>
+      </div>
+      <h6>
+        {search?.result.length < 1
+          ? "No products found"
+          : `Found ${search?.result.length} products`}
+      </h6>
     </div>
-  )
-}
+  );
+};
 
-export default SearchPage
+export default SearchPage;

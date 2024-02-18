@@ -6,23 +6,21 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
 import SwipeableTemporaryDrawer from "../Cart/Cartslide";
 import { cart } from "../Contex";
+import Search from "../Products/filterProducts/Search";
+import logo from "../images/logo.png"
+
 
 const UserNavbar = () => {
   const { cartitem, wishlist } = useContext(cart);
   return (
     <div style={{ position: "fixed", top: "0", width: "100%", zIndex: "10" }}>
       <div className="nav">
-        <div className="logo" style={{ marginLeft: "1cm" }}>
+      <div className="logo" style={{ marginLeft: "1cm" }}>
           {/* <h5>you first order is free</h5> */}
-          <img src="./images/logo.webp" alt="" />
+          <img src={logo} alt="" width={"200px"} />
         </div>
-        <div className="input">
-          <input
-            style={{ width: "5.5cm", height: ".6cm", outline: "none" }}
-            placeholder="search"
-            type="text"
-          ></input>
-        </div>
+       <Search/>
+       
         <div className="hotline">HOTLINE: 1-900-9999</div>
         <div className="right-nav">
          <Link to="/UserDashboard"> <Avatar /></Link>
@@ -57,24 +55,6 @@ const UserNavbar = () => {
             </Badge>
           </p>
         </div>
-      </div>
-      <div
-        className="nav2"
-        style={{
-          display: "flex",
-          width: "100%",
-          height: "30px",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          gap: "40px",
-          paddingLeft: "50px",
-        }}
-      >
-        <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-          <p>Home</p>
-        </Link>
-        <p>bestsellers</p>
-        <p>All New Sale</p>
       </div>
     </div>
   );

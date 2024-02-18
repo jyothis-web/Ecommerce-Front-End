@@ -40,7 +40,7 @@ const UpdateProduct = () => {
     const getSingleProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/admin/product/get-singleproduct/${productId}`
+          `${process.env.REACT_APP_BASE_URL}/admin/product/get-singleproduct/${productId}`
         );
 
         const product = response.data.product;
@@ -75,7 +75,7 @@ const UpdateProduct = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/admin/product/update-product/${productId}`,
+        `${process.env.REACT_APP_BASE_URL}/admin/product/update-product/${productId}`,
         formData
       );
 
@@ -253,7 +253,7 @@ export default UpdateProduct;
 //     const getSingleProduct = async () => {
 //       try {
 //         const response = await axios.get(
-//           `http://localhost:8080/admin/product/get-singleproduct/${productId}`
+//           `${process.env.REACT_APP_BASE_URL}/admin/product/get-singleproduct/${productId}`
 //         );
 
 //         const product = response.data.product;
@@ -287,7 +287,7 @@ export default UpdateProduct;
 
 //     try {
 //       const response = await axios.put(
-//         `http://localhost:8080/admin/product/update-product/${productId}`,
+//         `${process.env.REACT_APP_BASE_URL}/admin/product/update-product/${productId}`,
 //         requestData,
 //         {
 //           headers: {

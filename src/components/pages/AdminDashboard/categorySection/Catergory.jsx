@@ -40,7 +40,7 @@ const Catergory = ({ category }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:8080/admin/create-category`,
+        `${process.env.REACT_APP_BASE_URL}/admin/create-category`,
         { name },
         {
           headers: {
@@ -60,7 +60,7 @@ const Catergory = ({ category }) => {
   const handleDeleteSubmit = async (categoryID) => {
     try {
       await axios.delete(
-        `http://localhost:8080/admin/delete-category/${categoryID}`,
+        `${process.env.REACT_APP_BASE_URL}/admin/delete-category/${categoryID}`,
         {
           headers: {
             Authorization: `${token}`,

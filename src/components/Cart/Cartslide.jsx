@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Box from "@mui/material/Box";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
@@ -14,10 +14,45 @@ import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import "./cartslide.css";
 
 export default function SwipeableTemporaryDrawer() {
+    //usecontext for funtions
+    const {
+      cartitem,
+      // products,
+      SingleProductRemove,
+      handleaddproduct,
+      handleremoveproduct,
+      setCartitem,
+      auth
+    } = useContext(cart);
   const [state, setState] = React.useState({
     right: false,
   });
 
+  useEffect(() => {
+    // Access auth.user._id directly
+    const userId = auth.user ? auth.user._id : null;
+  
+    // Retrieve cart data from localStorage using the user ID
+    let existingcartitem = localStorage.getItem(`cart_${userId}`);
+    
+    if (existingcartitem) {
+      // Set the cart item state with the retrieved data
+      setCartitem(JSON.parse(existingcartitem));
+    }
+  
+    console.log("existingcartitem", existingcartitem);
+  }, [auth.user]);
+
+  // useEffect(() => {
+  //   localStorage.getItem('auth');
+  //   const userId = auth.user ? auth.user._id : null;
+  //   let existingcartitem = localStorage.getItem(`cart_${userId}`);
+  //   if (existingcartitem) setCartitem(JSON.parse(existingcartitem));
+  //   console.log("existingcartitem",existingcartitem);
+  // }, []);
+
+  
+  
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -59,7 +94,7 @@ export default function SwipeableTemporaryDrawer() {
             <div className="cartcard">
               <div>
                 <img
-                  src={product.Image}
+                  src={`${process.env.REACT_APP_BASE_URL}/${product.image.imagePath}`}
                   alt=""
                   width={"70PX"}
                   height={"auto"}
@@ -144,13 +179,7 @@ export default function SwipeableTemporaryDrawer() {
     </Box>
   );
 
-  //usecontext for funtions
-  const {
-    cartitem,
-    SingleProductRemove,
-    handleaddproduct,
-    handleremoveproduct,
-  } = useContext(cart);
+
 
   //to find the total price of cart
   const totalPrice = cartitem.reduce(

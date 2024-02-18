@@ -16,7 +16,7 @@ const UserLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/auth/admin/login", {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/admin/login`, {
         email,
         password,
       });

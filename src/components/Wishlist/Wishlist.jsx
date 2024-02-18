@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography, styled, Button, Box } from "@mui/material";
 import "../Products/products.css";
 import { useContext } from "react";
@@ -13,9 +13,22 @@ const Cartbtn = styled(Button)({
   border: "1px solid red",
   "&:hover": { color: "white", backgroundColor: "red" },
 });
+
 const Wishlist = () => {
-  const { wishlist,handleaddproduct, WishlistProductRemove,isProductInCart } =
-    useContext(cart);
+  const {
+    wishlist,
+    setWishlist,
+    handleaddproduct,
+    WishlistProductRemove,
+    isProductInCart,
+    auth
+  } = useContext(cart);
+
+  useEffect(() => {
+    const userId = auth.user ? auth.user._id : null;
+    let existingWishlistItem = localStorage.getItem(`wishlist_${userId}`);
+    if (existingWishlistItem) setWishlist(JSON.parse(existingWishlistItem));
+  }, [auth.user]);
 
   return (
     <div style={{ marginTop: "3.3cm" }}>
@@ -46,7 +59,16 @@ const Wishlist = () => {
               <img src={product.new} alt="" className="new" width={"50px"} />
               <img src={product.sale} alt="" className="sale" width={"50px"} />
               <div className="cartimage">
-                <img className="img1" src={product.Image} alt=""style={{ width: "100%" }} />
+                <img
+                
+                  src={`${process.env.REACT_APP_BASE_URL}/${product.image.imagePath}`}
+                  alt=""
+                  style={{
+                    width: "200px",
+                    height: "200px",
+                    objectFit: "cover",
+                  }}
+                />
                 {/* <img className="img2" src={cartitem.Image} alt="" /> */}
               </div>
 
@@ -63,14 +85,16 @@ const Wishlist = () => {
                 </Typography>
               </div>
               <div style={{ paddingLeft: "5px" }}>
-              {isProductInCart(product.id) ? (
-                <Cartbtn>Added to Cart</Cartbtn>
-              ) : (
-                <Cartbtn onClick={() => handleaddproduct(product)}>
-                  Add to Cart
-                </Cartbtn>
-              )}
-               
+                {isProductInCart(product._id) ? (
+                  <Cartbtn style={{ color: "white", backgroundColor: "red" }}>
+                    Added to Cart
+                  </Cartbtn>
+                ) : (
+                  <Cartbtn onClick={() => handleaddproduct(product)}>
+                    Add to Cart
+                  </Cartbtn>
+                )}
+
                 <SyncIcon
                   sx={{
                     marginBottom: "-5px",

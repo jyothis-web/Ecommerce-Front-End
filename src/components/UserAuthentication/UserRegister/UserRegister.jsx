@@ -32,7 +32,7 @@ const UserRegister = () => {
         console.log("fill all tha fields");
       } else {
         const response = await axios.post(
-          "http://localhost:8080/auth/register",
+          `${process.env.REACT_APP_BASE_URL}/auth/register`,
           { name, email, password } // Send data as an object
         );
         console.log(response.data);

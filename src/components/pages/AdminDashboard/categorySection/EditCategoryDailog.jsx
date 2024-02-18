@@ -24,7 +24,7 @@ export default function EditAlertDialog({categoryName, categoryID, setName}) {
       const token = auth.token;
       try {
         const response = await axios.put(
-          `http://localhost:8080/admin/update-category/${categoryID}`,
+          `${process.env.REACT_APP_BASE_URL}/admin/update-category/${categoryID}`,
           { name: editedName },
           {
             headers: {
