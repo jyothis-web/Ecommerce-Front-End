@@ -33,7 +33,7 @@ const Catergory = ({ category }) => {
 
   useEffect(() => {
     getCategories();
-  }, []);
+  },);
 
   //for create new category
   const handlenewSubmit = async (e) => {

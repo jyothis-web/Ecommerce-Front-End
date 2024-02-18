@@ -1,4 +1,4 @@
-import { Alert, Button, Rating, Typography, styled } from "@mui/material";
+import { Button, Rating, Typography, styled } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import "./products.css";
 import IconButton from "@mui/material/IconButton";

@@ -21,7 +21,7 @@ const UpdateProduct = () => {
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
-
+console.log(category);
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
     setImage(selectedImage);
@@ -60,7 +60,7 @@ const UpdateProduct = () => {
 
     getSingleProduct();
     getCategories(); // Assuming you need to fetch categories for the dropdown
-  }, [productId]);
+  }, );
 
   const handleSubmit = async (e) => {
     e.preventDefault();

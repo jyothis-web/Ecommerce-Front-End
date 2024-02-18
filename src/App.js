@@ -18,8 +18,6 @@ import CategoryWithProducts from "./components/pages/AdminDashboard/categorySect
 import Search from "./components/Products/filterProducts/Search";
 import SearchPage from "./components/pages/SearchpPage";
 import ProductDescription from "./components/pages/ProductDescription";
-import Navbar from "./components/Header/Navbar";
-
 function App() {
   return (
     <div className="App">

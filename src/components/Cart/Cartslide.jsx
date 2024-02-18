@@ -41,7 +41,7 @@ export default function SwipeableTemporaryDrawer() {
     }
   
     console.log("existingcartitem", existingcartitem);
-  }, [auth.user]);
+  }, [auth.user,setCartitem]);
 
   // useEffect(() => {
   //   localStorage.getItem('auth');

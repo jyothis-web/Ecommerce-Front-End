@@ -28,7 +28,7 @@ const Wishlist = () => {
     const userId = auth.user ? auth.user._id : null;
     let existingWishlistItem = localStorage.getItem(`wishlist_${userId}`);
     if (existingWishlistItem) setWishlist(JSON.parse(existingWishlistItem));
-  }, [auth.user]);
+  }, [auth.user,setWishlist]);
 
   return (
     <div style={{ marginTop: "3.3cm" }}>
