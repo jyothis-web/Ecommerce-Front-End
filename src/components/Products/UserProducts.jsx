@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Products = ({ ps }) => {
+const Products = () => {
   const {
     handleaddproduct,
     wishlistaddproduct,
@@ -98,7 +98,7 @@ const Products = ({ ps }) => {
   };
 
   return (
-    <div style={{ marginTop: "2.3cm", display: "flex" }}>
+    <div style={{ marginTop: "2.3cm", display: "flex",width:"100%" }}>
       <div>
         <div>
           <h3>categories</h3>
@@ -148,7 +148,7 @@ const Products = ({ ps }) => {
           display: "flex",
           justifyContent: "space-evenly",
           marginBottom: "3cm",
-          gap: ".5cm",
+          gap: ".3cm",
           flexWrap: "wrap",
         }}
       >

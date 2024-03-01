@@ -34,7 +34,7 @@ const Catergory = ({ category }) => {
   useEffect(() => {
     getCategories();
   },);
-
+console.log(getCategories());
   //for create new category
   const handlenewSubmit = async (e) => {
     e.preventDefault();
