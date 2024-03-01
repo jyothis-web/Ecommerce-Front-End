@@ -26,8 +26,11 @@ const Products = () => {
     cartitem,
     wishlist,
     auth,
+    setLoading,
+    loading
   } = useContext(cart);
   console.log("auth", auth);
+
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   //for grting acategories
@@ -37,13 +40,28 @@ const Products = () => {
   }, []);
   //for filter
   useEffect(() => {
-    if (checked.length || radio.length) {
-      filterProduct();
-    } else {
-      getProducts();
-    }
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        if (checked.length || radio.length) {
+          await filterProduct();
+        } else {
+          await getProducts();
+        }
+      } catch (error) {
+        console.error("Fetch Error:", error);
+        if (error.response) {
+          console.error("Error Response:", error.response.data);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
     // eslint-disable-next-line
   }, [checked, radio]);
+  
   //cartbuton
   const Cartbtn = styled(Button)({
     width: "90px",
@@ -86,6 +104,8 @@ const Products = () => {
       if (error.response) {
         console.error("Error Response:", error.response.data);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -98,7 +118,7 @@ const Products = () => {
   };
 
   return (
-    <div style={{ marginTop: "2.3cm", display: "flex",width:"100%" }}>
+    <div style={{ marginTop: "2.3cm", display: "flex", width: "100%" }}>
       <div>
         <div>
           <h3>categories</h3>
@@ -143,79 +163,82 @@ const Products = () => {
       </div>
 
       {/* {JSON.stringify(radio,null,4)} */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-evenly",
-          marginBottom: "3cm",
-          gap: ".3cm",
-          flexWrap: "wrap",
-        }}
-      >
-        {products.map((product) => (
-          <div className="card" key={product._id}>
-            <div>
-              {product.newimg > 0 && (
-                <img src={img} alt="" style={{ width: "50px" }} />
-              )}
-            </div>
-
-            <div
-              className="cartimage"
-              // onMouseEnter={() => setHoveredProduct(product)}
-              // onMouseLeave={() => setHoveredProduct(null)}
-            >
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            marginBottom: "3cm",
+            gap: ".3cm",
+            flexWrap: "wrap",
+          }}
+        >
+          {products.map((product) => (
+            <div className="card" key={product._id}>
               <div>
-                <Link to={`/ProductDescription/${product._id}`}>
-                  {product.image && (
-                    <img
-                      src={`${process.env.REACT_APP_BASE_URL}/${product.image.imagePath}`}
-                      alt={product.name}
-                      style={{
-                        width: "100%",
-                        height: "290px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  )}
-                </Link>
+                {product.newimg > 0 && (
+                  <img src={img} alt="" style={{ width: "50px" }} />
+                )}
               </div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <Link className="linkfont" to="/ProductDescription">
+
+              <div
+                className="cartimage"
+                // onMouseEnter={() => setHoveredProduct(product)}
+                // onMouseLeave={() => setHoveredProduct(null)}
+              >
                 <div>
-                  <Typography sx={{ height: "55px", width: "210px" }}>
-                    {product.name}
+                  <Link to={`/ProductDescription/${product._id}`}>
+                    {product.image && (
+                      <img
+                        src={`${process.env.REACT_APP_BASE_URL}/${product.image.imagePath}`}
+                        alt={product.name}
+                        style={{
+                          width: "100%",
+                          height: "290px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    )}
+                  </Link>
+                </div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <Link className="linkfont" to="/ProductDescription">
+                  <div>
+                    <Typography sx={{ height: "55px", width: "210px" }}>
+                      {product.name}
+                    </Typography>
+                  </div>
+                </Link>
+                {product.rating > 0 && (
+                  <Rating
+                    sx={{ fontSize: "12px" }}
+                    name="read-only"
+                    value={product.rating}
+                    precision={0.5}
+                    readOnly
+                  />
+                )}
+                <div>
+                  <Typography variant="h6" marginBottom={2} marginTop={2}>
+                    {" "}
+                    ${product.price}/-
                   </Typography>
                 </div>
-              </Link>
-              {product.rating > 0 && (
-                <Rating
-                  sx={{ fontSize: "12px" }}
-                  name="read-only"
-                  value={product.rating}
-                  precision={0.5}
-                  readOnly
-                />
-              )}
-              <div>
-                <Typography variant="h6" marginBottom={2} marginTop={2}>
-                  {" "}
-                  ${product.price}/-
-                </Typography>
               </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                height: "22px",
-                justifyContent: "space-between",
-                marginRight: "50px",
-                cursor: "pointer",
-              }}
-            >
-              {/* {isProductInCart(product._id) ? (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  height: "22px",
+                  justifyContent: "space-between",
+                  marginRight: "50px",
+                  cursor: "pointer",
+                }}
+              >
+                {/* {isProductInCart(product._id) ? (
                 <Cartbtn style={{ color: "white", backgroundColor: "red" }}>
                   Added to Cart
                 </Cartbtn>
@@ -224,58 +247,59 @@ const Products = () => {
                   Add to Cart
                 </Cartbtn>
               )} */}
-              {auth.user ? (
-                isProductInCart(product._id) ? (
-                  <Cartbtn style={{ color: "white", backgroundColor: "red" }}>
-                    Added to Cart
-                  </Cartbtn>
+                {auth.user ? (
+                  isProductInCart(product._id) ? (
+                    <Cartbtn style={{ color: "white", backgroundColor: "red" }}>
+                      Added to Cart
+                    </Cartbtn>
+                  ) : (
+                    <Cartbtn onClick={() => handleaddproduct(product)}>
+                      Add to Cart
+                    </Cartbtn>
+                  )
                 ) : (
-                  <Cartbtn onClick={() => handleaddproduct(product)}>
+                  <Cartbtn onClick={() => alert("Please login")}>
                     Add to Cart
                   </Cartbtn>
-                )
-              ) : (
-                <Cartbtn onClick={() => alert("Please login")}>
-                  Add to Cart
-                </Cartbtn>
-              )}
+                )}
 
-              <div>
-                <IconButton
-                  onClick={() => {
-                    auth.user
-                      ? wishlistaddproduct(product)
-                      : alert("Please login to add to wishlist");
-                  }}
-                >
-                  {auth.user ? (
-                    isWishlist(product._id) ? (
-                      <Favorite style={{ color: "red", fontSize: "18px" }} />
+                <div>
+                  <IconButton
+                    onClick={() => {
+                      auth.user
+                        ? wishlistaddproduct(product)
+                        : alert("Please login to add to wishlist");
+                    }}
+                  >
+                    {auth.user ? (
+                      isWishlist(product._id) ? (
+                        <Favorite style={{ color: "red", fontSize: "18px" }} />
+                      ) : (
+                        <FavoriteBorder
+                          style={{ color: "black", fontSize: "19px" }}
+                        />
+                      )
                     ) : (
                       <FavoriteBorder
                         style={{ color: "black", fontSize: "19px" }}
                       />
-                    )
-                  ) : (
-                    <FavoriteBorder
-                      style={{ color: "black", fontSize: "19px" }}
-                    />
-                  )}
-                </IconButton>
-                {/* <FavoriteBorderIcon 
+                    )}
+                  </IconButton>
+                  {/* <FavoriteBorderIcon 
                 onClick={() => {
                   wishlistaddproduct(p);
                 }}
                 sx={{ "&:hover": { color: "red" }, fontSize: "18px", }}
               /> */}
+                </div>
+                <SyncIcon
+                  sx={{ "&:hover": { color: "red" }, fontSize: "19px" }}
+                />
               </div>
-              <SyncIcon
-                sx={{ "&:hover": { color: "red" }, fontSize: "19px" }}
-              />
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

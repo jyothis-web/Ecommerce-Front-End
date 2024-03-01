@@ -8,6 +8,8 @@ const Contex = ({ children }) => {
   const [auth, setAuth] = useState({ user: null, token: "" });
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const [search, setSearch] = useState({
     keyword: "",
     result: [],
@@ -291,6 +293,8 @@ const Contex = ({ children }) => {
           getCategories,
           search,
           setSearch,
+          loading,
+           setLoading
         }}
       >
         {children}
