@@ -1,17 +1,16 @@
 import React from 'react'
 import UserNavbar from '../Header/UserNavbar'
 import UserProducts from '../Products/UserProducts'
-import Wishlist from '../Wishlist/Wishlist';
 import Banner from '../Banner/Banner';
+
 
 const UserHomePage = () => {
 
   return (
-    <div>
+    <div className='backgroundimg'>
       <UserNavbar/>
       <Banner/>
       <UserProducts />
-      <Wishlist />
     </div>
   )
 }

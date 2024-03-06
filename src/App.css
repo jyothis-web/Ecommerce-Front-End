@@ -15,3 +15,10 @@
 .linkfont{
     text-decoration: none;  
 }
+.backgroundimg{
+    background:url("../src/components/images/bg-ecommerce.jpg");
+    /* background-image: url("../src/components/images/movie.jpg"); */
+    background-size: cover; /* Adjust the background size based on your preferences */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */ /* Adjust the opacity (a value between 0 and 1) */
+}

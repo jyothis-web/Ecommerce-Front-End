@@ -27,9 +27,10 @@ const Products = () => {
     wishlist,
     auth,
     setLoading,
-    loading
+    loading,
   } = useContext(cart);
   console.log("auth", auth);
+  const [showFilter, setShowFilter] = useState(false);
 
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
@@ -57,11 +58,11 @@ const Products = () => {
         setLoading(false);
       }
     };
-  
+
     fetchData();
     // eslint-disable-next-line
   }, [checked, radio]);
-  
+
   //cartbuton
   const Cartbtn = styled(Button)({
     width: "90px",
@@ -116,52 +117,68 @@ const Products = () => {
   const isWishlist = (productId) => {
     return wishlist.some((product) => product._id === productId);
   };
-
+  const handleFilterButtonClick = () => {
+    setShowFilter(!showFilter);
+  };
   return (
-    <div style={{ marginTop: "2.3cm", display: "flex", width: "100%" }}>
+    <div style={{ marginTop: "1.3cm", display: "flex", width: "100%" }}>
       <div>
+        <Button
+          style={{ marginTop: "-20px" }}
+          variant="contained"
+          onClick={handleFilterButtonClick}
+        >
+          {" "}
+          {showFilter ? "Close Filter" : "Filter"}
+        </Button>
+      </div>
+      {showFilter && (
         <div>
-          <h3>categories</h3>
-          {categories.map((c) => (
-            <div key={c._id} className="filter-css">
-              <input
-                type="checkbox"
-                id={`checkbox-${c._id}`}
-                value={c._id}
-                onChange={(e) => handlefilter(e.target.checked, c._id)}
-                style={{
-                  width: "16px",
-                  height: "16px",
-                  backgroundColor: "blue",
-                }}
-              />
-              <label
-                style={{ marginTop: "-5px" }}
-                htmlFor={`checkbox-${c._id}`}
-              >
-                {c.name}
-              </label>
-            </div>
-          ))}
-        </div>
-        <div>
-          <h3>filter by price</h3>
-          <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-            {Prices.map((price) => (
-              <div key={price._id}>
-                {" "}
-                <Radio value={price.array}>{price.name}</Radio>
+          <div>
+            <h3>categories</h3>
+            {categories.map((c) => (
+              <div key={c._id} className="filter-css">
+                <input
+                  type="checkbox"
+                  id={`checkbox-${c._id}`}
+                  value={c._id}
+                  onChange={(e) => handlefilter(e.target.checked, c._id)}
+                  style={{
+                    width: "16px",
+                    height: "16px",
+                    backgroundColor: "blue",
+                  }}
+                />
+                <label
+                  style={{ marginTop: "-5px" }}
+                  htmlFor={`checkbox-${c._id}`}
+                >
+                  {c.name}
+                </label>
               </div>
             ))}
-          </Radio.Group>
+          </div>
+          <div>
+            <h3>filter by price</h3>
+            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+              {Prices.map((price) => (
+                <div key={price._id}>
+                  {" "}
+                  <Radio value={price.array}>{price.name}</Radio>
+                </div>
+              ))}
+            </Radio.Group>
+          </div>
+          <div>
+            <Button
+              variant="contained"
+              onClick={() => window.location.reload()}
+            >
+              Reset filter
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button variant="contained" onClick={() => window.location.reload()}>
-            Reset filter
-          </Button>
-        </div>
-      </div>
-
+      )}
       {/* {JSON.stringify(radio,null,4)} */}
       {loading ? (
         <div>Loading...</div>
@@ -194,11 +211,7 @@ const Products = () => {
                       <img
                         src={`${process.env.REACT_APP_BASE_URL}/${product.image.imagePath}`}
                         alt={product.name}
-                        style={{
-                          width: "100%",
-                          height: "290px",
-                          objectFit: "cover",
-                        }}
+  className="cart-image"
                       />
                     )}
                   </Link>

@@ -96,6 +96,10 @@ const UserLogin = () => {
             <Link to="/UserRegister">
               <Button sx={{ textTransform: "none" }}>Sign in</Button>
             </Link>
+            <Link to="/AdminLogin">
+              <Button sx={{ textTransform: "none" }}>Login For Admin</Button>
+            </Link>
+            
           </div>
         </Card>
       </form>

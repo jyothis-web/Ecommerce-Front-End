@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { cart } from "../../Contex";
 
-const UserLogin = () => {
+const AdminLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +22,7 @@ const UserLogin = () => {
       });
       console.log(response.data);
       toast.success(response.data.message);
+    
       setAuth({
         ...auth,
         user: response.data.user,
@@ -34,6 +35,7 @@ const UserLogin = () => {
       // Assuming `navigate` is defined somewhere, navigate to "/UserLogin"
     } catch (error) {
       console.log(error.response.data.message);
+      toast.error(error.response.data.message);
       console.error(error);
     }
   };
@@ -89,7 +91,7 @@ const UserLogin = () => {
           <div>
             {" "}
             Already have an account{" "}
-            <Link to="/UserRegister">
+            <Link to="/AdminRegister">
               <Button sx={{ textTransform: "none" }}>Sign in</Button>
             </Link>
           </div>
@@ -99,4 +101,4 @@ const UserLogin = () => {
   );
 };
 
-export default UserLogin;
+export default AdminLogin;

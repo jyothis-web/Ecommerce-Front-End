@@ -5,7 +5,7 @@ import Banner from '../Banner/Banner';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className='backgroundimg'>
       <Navbar/>
       <Banner/>
       <UserProducts/>

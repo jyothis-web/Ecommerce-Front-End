@@ -7,23 +7,26 @@ import { Link } from "react-router-dom";
 import SwipeableTemporaryDrawer from "../Cart/Cartslide";
 import { cart } from "../Contex";
 import Search from "../Products/filterProducts/Search";
-import logo from "../images/logo.png"
-
+import logo from "../images/logo.png";
 
 const UserNavbar = () => {
   const { cartitem, wishlist } = useContext(cart);
   return (
     <div style={{ position: "fixed", top: "0", width: "100%", zIndex: "10" }}>
       <div className="nav">
-      <div className="logo" style={{ marginLeft: "1cm" }}>
+        {/* <div className="menu-btn"><MobileDrawer/></div>  */}
+        <div className="logo">
           {/* <h5>you first order is free</h5> */}
-          <img src={logo} alt="" width={"200px"} />
+          <img src={logo} alt="" width={"100%"} />
         </div>
-       <Search/>
-       
+        <Search />
+
         <div className="hotline">HOTLINE: 1-900-9999</div>
         <div className="right-nav">
-         <Link to="/UserDashboard"> <Avatar /></Link>
+          <Link to="/UserDashboard">
+            {" "}
+            <Avatar />
+          </Link>
 
           <Link
             style={{ textDecoration: "none", color: "white" }}

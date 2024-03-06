@@ -21,7 +21,7 @@ const Navbar = ({ handleSearch }) => {
       <div className="nav">
         <div className="logo" style={{ marginLeft: "1cm" }}>
           {/* <h5>you first order is free</h5> */}
-          <img src={logo} alt="" width={"200px"} />
+          <img src={logo} alt="" width={"100%"} />
         </div>
        <Search/>
        

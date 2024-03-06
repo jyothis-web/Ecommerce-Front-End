@@ -30,7 +30,7 @@ const SearchPage = () => {
     return wishlist.some((product) => product._id === productId);
   };
   return (
-    <div>
+    <div className='backgroundimg'>
       <UserNavbar/>
       <h3>Search results</h3>
       <div style={{  display: "flex",

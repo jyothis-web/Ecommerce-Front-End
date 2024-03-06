@@ -18,6 +18,7 @@ import CategoryWithProducts from "./components/pages/AdminDashboard/categorySect
 import Search from "./components/Products/filterProducts/Search";
 import SearchPage from "./components/pages/SearchpPage";
 import ProductDescription from "./components/pages/ProductDescription";
+import AdminRegister from "./components/UserAuthentication/AdminRegister/AdminRegister";
 function App() {
   return (
     <div className="App">
@@ -37,6 +38,7 @@ function App() {
         <Route path="/UserRegister" element={<UserRegister />} />
         <Route path="/UserLogin" element={<UserLogin />} />
         <Route path="/AdminLogin" element={<AdminLogin />} />
+        <Route path="/AdminRegister" element={<AdminRegister />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/Wishlist" element={<Wishlist />} />
         <Route path="/UserDashboard" element={<UserDashboard />} />
